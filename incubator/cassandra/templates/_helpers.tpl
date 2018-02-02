@@ -12,6 +12,10 @@ We truncate at 21 chars because Kubernetes name fields are limited to 24 (by the
 and Statefulset will append -xx at the end of name.
 */}}
 {{- define "cassandra.fullname" -}}
-{{- $name := default .Chart.Name .Values.nameOverride -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 -}}
+{{- $releaseName := .Release.Name | replace "_" "-" -}}
+{{- if ne .Chart.Name  .Release.Name -}}
+{{- printf "%s-%s" $releaseName .Chart.Name | trunc 63 | trimSuffix "-" -}}
+{{- else -}}
+{{- printf "%s" .Chart.Name | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
 {{- end -}}
