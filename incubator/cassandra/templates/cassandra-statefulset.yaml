@@ -22,6 +22,7 @@ spec:
   - name: cql
     port: {{ default 9042 .Values.config.ports.cql }}
     targetPort: {{ default 9042 .Values.config.ports.cql }}
+    nodePort: {{ default 31042 .Values.config.node_ports.cql }}
   - name: thrift
     port: {{ default 9160 .Values.config.ports.thrift }}
     targetPort: {{ default 9160 .Values.config.ports.thrift }}

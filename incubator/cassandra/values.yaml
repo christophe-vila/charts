@@ -52,6 +52,8 @@ config:
   max_heap_size: 512M
   heap_new_size: 128M
   start_rpc: false
+  node_ports:
+    cql: 31042
   ports:
     cql: 9042
     thrift: 9160
